@@ -141,3 +141,8 @@ We would appreciate it if our paper and repo are helpful to you!
   year={2024}
 }
 ```
+
+
+
+
+python -m src.training.main --eval --resume checkpoints/ViT-B-16_teacher/ViT_B_16_cc3m_12m_ep32.pt --val-data test/flickrir/ --model ViT-B-16 --batch-size 256 --workers 4 --precision amp --zeroshot-frequency 1

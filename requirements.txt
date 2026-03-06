@@ -4,3 +4,8 @@ regex
 ftfy
 tqdm
 huggingface_hub
+datasets 
+
+pillow
+gdown
+open-clip-torch

@@ -4,6 +4,33 @@ models/
 features/
 results/
 
+test/**
+!test/**/*.py
+data/**
+
+# Ignore all data inside test and checkpoints
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tiff
+*.gif
+*.arrow
+
+# Excel
+*.xlsx
+*.xls
+*.csv
+
+# JSON
+*.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
