@@ -161,7 +161,7 @@ def main(args):
                 f.write(f"{name}: {val}\n")
 
     if len(args.model_checkpoint) !=0:
-        checkpoint = torch.load(args.model_checkpoint, map_location='cpu')
+        checkpoint = torch.load(args.resume, map_location='cpu', weights_only=False)
         sd = checkpoint
         if "state_dict" in sd.keys():
             sd = checkpoint["state_dict"]
@@ -216,7 +216,7 @@ def main(args):
     start_epoch = 0
     if args.resume is not None:
         if os.path.isfile(args.resume):
-            checkpoint = torch.load(args.resume, map_location='cpu')
+            checkpoint = torch.load(args.resume, map_location='cpu', weights_only=False)
             if 'epoch' in checkpoint:
                 # resuming a train checkpoint w/ epoch and optimizer state
                 start_epoch = checkpoint["epoch"]
