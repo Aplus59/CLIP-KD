@@ -371,23 +371,62 @@ def evaluate(model, data, epoch, args, tb_writer=None):
     return metrics
 
 
-def get_metrics(image_features, text_features, logit_scale):
+def get_metrics(image_features, text_features, logit_scale, ks=(1, 5, 10), chunk_size=256):
+    """
+    Memory-safe retrieval metrics for Recall@K.
+    Computes image->text and text->image R@K without full argsort on NxN logits.
+
+    Args:
+        image_features: Tensor [N, D] on CPU or GPU
+        text_features: Tensor [N, D] on CPU or GPU
+        logit_scale: scalar tensor
+        ks: tuple of K values for Recall@K
+        chunk_size: number of queries processed per chunk
+
+    Returns:
+        metrics: dict
+    """
     metrics = {}
-    logits_per_image = (logit_scale * image_features @ text_features.t()).detach().cpu()
-    logits_per_text = logits_per_image.t().detach().cpu()
+    max_k = max(ks)
 
-    logits = {"image_to_text": logits_per_image, "text_to_image": logits_per_text}
-    ground_truth = torch.arange(len(text_features)).view(-1, 1)
+    # keep everything on CPU here since features were accumulated on CPU
+    image_features = image_features.detach().cpu()
+    text_features = text_features.detach().cpu()
+    logit_scale = logit_scale.detach().cpu()
 
-    for name, logit in logits.items():
-        ranking = torch.argsort(logit, descending=True)
-        preds = torch.where(ranking == ground_truth)[1]
-        preds = preds.detach().cpu().numpy()
-        metrics[f"{name}_mean_rank"] = preds.mean() + 1
-        metrics[f"{name}_median_rank"] = np.floor(np.median(preds)) + 1
-        for k in [1, 5, 10]:
-            metrics[f"{name}_R@{k}"] = np.mean(preds < k)
+    num_samples = image_features.shape[0]
+
+    # image -> text
+    correct_at_k = {k: 0 for k in ks}
+    for start in range(0, num_samples, chunk_size):
+        end = min(start + chunk_size, num_samples)
+        img_chunk = image_features[start:end]  # [B, D]
+        logits = logit_scale * img_chunk @ text_features.t()  # [B, N]
+
+        topk_idx = torch.topk(logits, k=max_k, dim=1).indices  # [B, max_k]
+        gt = torch.arange(start, end).view(-1, 1)  # correct paired text index
+
+        for k in ks:
+            correct_at_k[k] += (topk_idx[:, :k] == gt).any(dim=1).sum().item()
+
+    for k in ks:
+        metrics[f"image_to_text_R@{k}"] = correct_at_k[k] / num_samples
+
+    # text -> image
+    correct_at_k = {k: 0 for k in ks}
+    for start in range(0, num_samples, chunk_size):
+        end = min(start + chunk_size, num_samples)
+        txt_chunk = text_features[start:end]  # [B, D]
+        logits = logit_scale * txt_chunk @ image_features.t()  # [B, N]
+
+        topk_idx = torch.topk(logits, k=max_k, dim=1).indices  # [B, max_k]
+        gt = torch.arange(start, end).view(-1, 1)  # correct paired image index
+
+        for k in ks:
+            correct_at_k[k] += (topk_idx[:, :k] == gt).any(dim=1).sum().item()
+
+    for k in ks:
+        metrics[f"text_to_image_R@{k}"] = correct_at_k[k] / num_samples
 
     return metrics
-
 
