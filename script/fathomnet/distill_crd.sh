@@ -12,6 +12,7 @@ torchrun --nproc_per_node 1 -m \
     --val-data-root ../newd/images/ \
     --csv-img-key file_name \
     --csv-caption-key text \
+    --csv-separator "," \
     --warmup 1000 \
     --batch-size=64 \
     --lr=1e-3 \
