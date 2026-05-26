@@ -11,7 +11,7 @@ fi
 
 export USE_AUG=1
 
-METHODS=("CrossKD" "ICL" "GD" "FD" "CKD" "AFD")
+METHODS=("AFD" "CLIP-KD")
 LR=1e-5
 WD=0.2
 
@@ -23,12 +23,8 @@ for METHOD in "${METHODS[@]}"; do
     CKD=0; ICL=0; CROSS_KD=0; FD=0; GD=0; AFD=0
     
     case $METHOD in
-        "CrossKD") CROSS_KD=1.0 ;;
-        "ICL")     ICL=1.0 ;;
-        "GD")      GD=1.0 ;;
-        "FD")      FD=1.0 ;;
-        "CKD")     CKD=1.0 ;;
         "AFD")     AFD=1.0 ;;
+        "CLIP-KD") CKD=1.0; ICL=1.0; FD=2000.0 ;;
     esac
 
     TAG="fathomnet-distill-${METHOD}-student-vit-t"

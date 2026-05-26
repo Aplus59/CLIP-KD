@@ -40,7 +40,7 @@ def get_best_results(log_dir):
     return None
 
 def main():
-    methods = ["CrossKD", "ICL", "GD", "FD", "CKD", "AFD"]
+    methods = ["CrossKD", "ICL", "GD", "FD", "CKD", "AFD", "CLIP-KD"]
     results = {}
 
     for method in methods:
