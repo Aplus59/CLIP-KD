@@ -62,12 +62,22 @@ def image_transform(
 
     normalize = Normalize(mean=mean, std=std)
     if is_train:
-        return Compose([
+        import os
+        transforms_list = [
             RandomResizedCrop(image_size, scale=(0.9, 1.0), interpolation=InterpolationMode.BICUBIC),
+        ]
+        if os.environ.get("USE_AUG", "1") == "1":
+            transforms_list.extend([
+                RandomHorizontalFlip(p=0.5),
+                RandomVerticalFlip(p=0.5),
+                ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
+            ])
+        transforms_list.extend([
             _convert_to_rgb,
             ToTensor(),
             normalize,
         ])
+        return Compose(transforms_list)
     else:
         if resize_longest_max:
             transforms = [
