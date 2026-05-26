@@ -13,7 +13,7 @@ for LR in "${LEARNING_RATES[@]}"; do
         
         torchrun --nproc_per_node 1 -m \
             training.main \
-            --pretrained /workspace/CLIP-KD/checkpoints/ViT-B-16_teacher/ViT_B_16_cc3m_12m_ep32.pt \
+            --pretrained openai \
             --save-frequency 1 \
             --zeroshot-frequency 1 \
             --report-to tensorboard \

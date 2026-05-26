@@ -275,7 +275,7 @@ def create_kd_model_and_transforms(
 
     t_model = create_model(
         teacher_model_name,
-        pretrained,
+        None,
         precision=precision,
         device=device,
         jit=jit,
