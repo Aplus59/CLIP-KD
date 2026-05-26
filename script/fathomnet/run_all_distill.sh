@@ -46,7 +46,7 @@ for METHOD in "${METHODS[@]}"; do
         --csv-caption-key text \
         --csv-separator "," \
         --warmup 200 \
-        --batch-size=128 \
+        --batch-size=64 \
         --lr=${LR} \
         --wd=${WD} \
         --epochs 20 \
