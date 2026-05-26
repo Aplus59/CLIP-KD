@@ -19,5 +19,6 @@ torchrun --nproc_per_node 1 -m \
     --epochs 32 \
     --workers=4 \
     --model ViT-B-16 \
+    --pretrained ../checkpoints/ViT-B-16_teacher/ViT_B_16_cc3m_12m_ep32.pt \
     --logs ../logs/ \
     --tag fathomnet-teacher-vit-b
