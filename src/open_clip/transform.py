@@ -5,7 +5,7 @@ import torch.nn as nn
 import torchvision.transforms.functional as F
 
 from torchvision.transforms import Normalize, Compose, RandomResizedCrop, InterpolationMode, ToTensor, Resize, \
-    CenterCrop
+    CenterCrop, RandomHorizontalFlip, RandomVerticalFlip, ColorJitter
 
 from .constants import OPENAI_DATASET_MEAN, OPENAI_DATASET_STD
 
