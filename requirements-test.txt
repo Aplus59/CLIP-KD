@@ -4,6 +4,6 @@ transformers
 timm==0.6.11
 scipy 
 requests==2.32.5
-load_dataset
+datasets
 gdown
 tensorboard
