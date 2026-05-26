@@ -13,7 +13,7 @@ torchrun --nproc_per_node 1 -m \
     --csv-caption-key text \
     --csv-separator "," \
     --warmup 1000 \
-    --batch-size=64 \
+    --batch-size=128 \
     --lr=1e-3 \
     --wd=0.1 \
     --epochs 32 \
