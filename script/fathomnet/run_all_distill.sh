@@ -11,7 +11,7 @@ fi
 
 export USE_AUG=1
 
-METHODS=("AFD" "CLIP-KD")
+METHODS=("CLIP-KD")
 LR=1e-5
 WD=0.2
 
