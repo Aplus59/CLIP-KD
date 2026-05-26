@@ -186,8 +186,7 @@ def main(args):
     for t_n, t_p in t_model.named_parameters():
         t_p.requires_grad = False
     checkpoint = torch.load(args.t_model_checkpoint, map_location='cpu')
-    sd = checkpoint
-    #sd = checkpoint["state_dict"]
+    sd = checkpoint["state_dict"] if "state_dict" in checkpoint else checkpoint
     if next(iter(sd.items()))[0].startswith('module'):
         sd = {k[len('module.'):]: v for k, v in sd.items()}
     t_model.load_state_dict(sd)
