@@ -9,9 +9,7 @@ def get_best_results(log_dir):
 
     best_epoch = -1
     best_score = -1
-    best_i2t = 0
-    best_t2i = 0
-    val_loss = 0
+    best_data = None
 
     with open(results_file, 'r') as f:
         for line in f:
@@ -25,16 +23,18 @@ def get_best_results(log_dir):
             if avg_r1 > best_score:
                 best_score = avg_r1
                 best_epoch = data.get("epoch", -1)
-                best_i2t = i2t_r1
-                best_t2i = t2i_r1
-                val_loss = data.get("val_loss", 0)
+                best_data = data
                 
-    if best_score > 0:
+    if best_score > 0 and best_data:
         return {
             "epoch": best_epoch,
-            "val_loss": val_loss,
-            "i2t_r1": best_i2t,
-            "t2i_r1": best_t2i,
+            "val_loss": best_data.get("val_loss", 0),
+            "i2t_r1": best_data.get("image_to_text_R@1", 0),
+            "i2t_r5": best_data.get("image_to_text_R@5", 0),
+            "i2t_r10": best_data.get("image_to_text_R@10", 0),
+            "t2i_r1": best_data.get("text_to_image_R@1", 0),
+            "t2i_r5": best_data.get("text_to_image_R@5", 0),
+            "t2i_r10": best_data.get("text_to_image_R@10", 0),
             "avg_r1": best_score
         }
     return None
@@ -61,14 +61,23 @@ def main():
     # Sort in descending order of Avg R@1
     sorted_methods = sorted(results.keys(), key=lambda x: results[x]["avg_r1"], reverse=True)
 
-    print("-" * 85)
-    print(f"{'Méthode (Method)':<18} | {'Best Epoch':<10} | {'I2T R@1 (%)':<15} | {'T2I R@1 (%)':<15} | {'Avg R@1 (%)':<15}")
-    print("-" * 85)
+    print("-" * 125)
+    print(f"{'Method':<10} | {'Epoch':<6} | {'Val Loss':<8} | {'I2T R@1':<8} | {'I2T R@5':<8} | {'I2T R@10':<8} | {'T2I R@1':<8} | {'T2I R@5':<8} | {'T2I R@10':<8} | {'Avg R@1':<8}")
+    print("-" * 125)
     
     for method in sorted_methods:
         res = results[method]
-        print(f"{method:<18} | Epoch {res['epoch']:<4} | {res['i2t_r1']*100:>8.2f}%      | {res['t2i_r1']*100:>8.2f}%      | {res['avg_r1']*100:>8.2f}%")
-    print("-" * 85)
+        val_loss = f"{res['val_loss']:.4f}"
+        i2t_1 = f"{res['i2t_r1']*100:.2f}%"
+        i2t_5 = f"{res['i2t_r5']*100:.2f}%"
+        i2t_10 = f"{res['i2t_r10']*100:.2f}%"
+        t2i_1 = f"{res['t2i_r1']*100:.2f}%"
+        t2i_5 = f"{res['t2i_r5']*100:.2f}%"
+        t2i_10 = f"{res['t2i_r10']*100:.2f}%"
+        avg_1 = f"{res['avg_r1']*100:.2f}%"
+        
+        print(f"{method:<10} | {res['epoch']:<6} | {val_loss:<8} | {i2t_1:<8} | {i2t_5:<8} | {i2t_10:<8} | {t2i_1:<8} | {t2i_5:<8} | {t2i_10:<8} | {avg_1:<8}")
+    print("-" * 125)
 
 if __name__ == "__main__":
     main()
