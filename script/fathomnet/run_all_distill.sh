@@ -31,7 +31,7 @@ for METHOD in "${METHODS[@]}"; do
         "AFD")     AFD=1.0 ;;
     esac
 
-    TAG="fathomnet-distill-${METHOD}-student-vit-b"
+    TAG="fathomnet-distill-${METHOD}-student-vit-t"
     
     /workspace/CLIP-KD/venv/bin/torchrun --nproc_per_node 1 -m \
         training.main_kd \
@@ -51,8 +51,7 @@ for METHOD in "${METHODS[@]}"; do
         --wd=${WD} \
         --epochs 20 \
         --workers=4 \
-        --model ViT-B-16 \
-        --pretrained openai \
+        --model ViT-T-16 \
         --t-model ViT-B-16 \
         --t-model-checkpoint ${TEACHER_CKPT} \
         --logs ../logs/ \
