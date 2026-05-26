@@ -52,7 +52,7 @@ for METHOD in "${METHODS[@]}"; do
         --epochs 20 \
         --workers=4 \
         --model ViT-T-16 \
-        --pretrained ../checkpoints/ViT-B-16_teacher/baselines/ViT_T_16_cc3m_12m_ep32.pt \
+        --pretrained /workspace/CLIP-KD/checkpoints/ViT-B-16_teacher/baselines/ViT_T_16_cc3m_12m_ep32.pt \
         --t-model ViT-B-16 \
         --t-model-checkpoint ${TEACHER_CKPT} \
         --logs ../logs/ \
