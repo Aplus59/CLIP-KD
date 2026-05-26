@@ -38,8 +38,8 @@ for METHOD in "${METHODS[@]}"; do
         --save-frequency 0 \
         --zeroshot-frequency 1 \
         --report-to tensorboard \
-        --train-data="../newd/db/train_split.csv"  \
-        --val-data="../newd/db/val_split.csv"  \
+        --train-data="../newd/db/train.csv"  \
+        --val-data="../newd/db/test.csv"  \
         --data-root ../newd/images/ \
         --val-data-root ../newd/images/ \
         --csv-img-key file_name \
