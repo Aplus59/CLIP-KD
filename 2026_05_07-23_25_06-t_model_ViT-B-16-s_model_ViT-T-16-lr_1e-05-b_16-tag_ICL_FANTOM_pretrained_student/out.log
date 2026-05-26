@@ -1,0 +1,107 @@
+2026-05-07,23:25:06 | INFO | Running with a single process. Device cuda:0.
+2026-05-07,23:25:06 | INFO | Loaded ViT-T-16 model config.
+2026-05-07,23:25:06 | INFO | Loaded ViT-B-16 model config.
+2026-05-07,23:25:07 | INFO | Teacher Visual Params:
+2026-05-07,23:25:07 | INFO | 86.19264M
+2026-05-07,23:25:07 | INFO | Teacher Text Params:
+2026-05-07,23:25:07 | INFO | 37.828608M
+2026-05-07,23:25:07 | INFO | Student Visual Params:
+2026-05-07,23:25:07 | INFO | 5.622912M
+2026-05-07,23:25:07 | INFO | Student Text Params:
+2026-05-07,23:25:07 | INFO | 21.293568M
+2026-05-07,23:25:07 | INFO |   alpha_afd_loss: 0.0
+2026-05-07,23:25:07 | INFO |   alpha_ckd_loss: 0.0
+2026-05-07,23:25:07 | INFO |   alpha_cross_kd_loss: 0.0
+2026-05-07,23:25:07 | INFO |   alpha_fd_loss: 0.0
+2026-05-07,23:25:07 | INFO |   alpha_gd_loss: 0.0
+2026-05-07,23:25:07 | INFO |   alpha_icl_loss: 1.0
+2026-05-07,23:25:07 | INFO |   batch_size: 16
+2026-05-07,23:25:07 | INFO |   beta1: 0.9
+2026-05-07,23:25:07 | INFO |   beta2: 0.98
+2026-05-07,23:25:07 | INFO |   checkpoint_path: G:/Vmi/S2/TER/CLIP-KD/logs\2026_05_07-23_25_06-t_model_ViT-B-16-s_model_ViT-T-16-lr_1e-05-b_16-tag_ICL_FANTOM_pretrained_student\checkpoints
+2026-05-07,23:25:07 | INFO |   copy_codebase: False
+2026-05-07,23:25:07 | INFO |   csv_caption_key: text
+2026-05-07,23:25:07 | INFO |   csv_img_key: file_name
+2026-05-07,23:25:07 | INFO |   csv_separator: ,
+2026-05-07,23:25:07 | INFO |   data_root: G:/Vmi/S2/TER/CLIP-KD/fantom/images
+2026-05-07,23:25:07 | INFO |   dataset_resampled: False
+2026-05-07,23:25:07 | INFO |   dataset_type: csv
+2026-05-07,23:25:07 | INFO |   ddp_static_graph: False
+2026-05-07,23:25:07 | INFO |   debug: False
+2026-05-07,23:25:07 | INFO |   device: cuda:0
+2026-05-07,23:25:07 | INFO |   dist_backend: nccl
+2026-05-07,23:25:07 | INFO |   dist_url: env://
+2026-05-07,23:25:07 | INFO |   distributed: False
+2026-05-07,23:25:07 | INFO |   epochs: 30
+2026-05-07,23:25:07 | INFO |   eps: 1e-06
+2026-05-07,23:25:07 | INFO |   eval: False
+2026-05-07,23:25:07 | INFO |   force_custom_text: False
+2026-05-07,23:25:07 | INFO |   force_quick_gelu: False
+2026-05-07,23:25:07 | INFO |   gather_with_grad: False
+2026-05-07,23:25:07 | INFO |   grad_checkpointing: False
+2026-05-07,23:25:07 | INFO |   grad_clip_norm: None
+2026-05-07,23:25:07 | INFO |   horovod: False
+2026-05-07,23:25:07 | INFO |   image_mean: None
+2026-05-07,23:25:07 | INFO |   image_std: None
+2026-05-07,23:25:07 | INFO |   imagenet_a: None
+2026-05-07,23:25:07 | INFO |   imagenet_r: None
+2026-05-07,23:25:07 | INFO |   imagenet_sketch: None
+2026-05-07,23:25:07 | INFO |   imagenet_v2: None
+2026-05-07,23:25:07 | INFO |   imagenet_val: None
+2026-05-07,23:25:07 | INFO |   local_loss: False
+2026-05-07,23:25:07 | INFO |   local_rank: 0
+2026-05-07,23:25:07 | INFO |   lock_image: False
+2026-05-07,23:25:07 | INFO |   lock_image_freeze_bn_stats: False
+2026-05-07,23:25:07 | INFO |   lock_image_unlocked_groups: 0
+2026-05-07,23:25:07 | INFO |   lock_text: False
+2026-05-07,23:25:07 | INFO |   lock_text_freeze_layer_norm: False
+2026-05-07,23:25:07 | INFO |   lock_text_unlocked_layers: 0
+2026-05-07,23:25:07 | INFO |   log_level: 20
+2026-05-07,23:25:07 | INFO |   log_local: False
+2026-05-07,23:25:07 | INFO |   log_path: G:/Vmi/S2/TER/CLIP-KD/logs\2026_05_07-23_25_06-t_model_ViT-B-16-s_model_ViT-T-16-lr_1e-05-b_16-tag_ICL_FANTOM_pretrained_student\out.log
+2026-05-07,23:25:07 | INFO |   logs: G:/Vmi/S2/TER/CLIP-KD/logs
+2026-05-07,23:25:07 | INFO |   lr: 1e-05
+2026-05-07,23:25:07 | INFO |   mask_ratio: 0.0
+2026-05-07,23:25:07 | INFO |   model: ViT-T-16
+2026-05-07,23:25:07 | INFO |   model_checkpoint: G:/Vmi/S2/CLIP-KD/model/ViT_T_16_student_state_dict.pt
+2026-05-07,23:25:07 | INFO |   name: 2026_05_07-23_25_06-t_model_ViT-B-16-s_model_ViT-T-16-lr_1e-05-b_16-tag_ICL_FANTOM_pretrained_student
+2026-05-07,23:25:07 | INFO |   no_set_device_rank: False
+2026-05-07,23:25:07 | INFO |   num_per_class: 1
+2026-05-07,23:25:07 | INFO |   precision: amp
+2026-05-07,23:25:07 | INFO |   pretrained: 
+2026-05-07,23:25:07 | INFO |   pretrained_image: False
+2026-05-07,23:25:07 | INFO |   rank: 0
+2026-05-07,23:25:07 | INFO |   report_to: 
+2026-05-07,23:25:07 | INFO |   resume: None
+2026-05-07,23:25:07 | INFO |   s_embed_dim: 512
+2026-05-07,23:25:07 | INFO |   save_frequency: 1
+2026-05-07,23:25:07 | INFO |   save_most_recent: False
+2026-05-07,23:25:07 | INFO |   seed: 0
+2026-05-07,23:25:07 | INFO |   skip_scheduler: False
+2026-05-07,23:25:07 | INFO |   sup_batch_size: 64
+2026-05-07,23:25:07 | INFO |   t_embed_dim: 512
+2026-05-07,23:25:07 | INFO |   t_eval: False
+2026-05-07,23:25:07 | INFO |   t_model: ViT-B-16
+2026-05-07,23:25:07 | INFO |   t_model_checkpoint: G:/Vmi/S2/CLIP-KD/model/ViT_B_16_teacher_state_dict.pt
+2026-05-07,23:25:07 | INFO |   tag: ICL_FANTOM_pretrained_student
+2026-05-07,23:25:07 | INFO |   tensorboard: False
+2026-05-07,23:25:07 | INFO |   tensorboard_path: 
+2026-05-07,23:25:07 | INFO |   torchscript: False
+2026-05-07,23:25:07 | INFO |   trace: False
+2026-05-07,23:25:07 | INFO |   train_data: G:/Vmi/S2/TER/CLIP-KD/fantom/db/train.csv
+2026-05-07,23:25:07 | INFO |   train_num_samples: None
+2026-05-07,23:25:07 | INFO |   use_bn_sync: False
+2026-05-07,23:25:07 | INFO |   val_data: G:/Vmi/S2/TER/CLIP-KD/fantom/db/test.csv
+2026-05-07,23:25:07 | INFO |   val_data_root: G:/Vmi/S2/TER/CLIP-KD/fantom/images
+2026-05-07,23:25:07 | INFO |   val_dataset_type: csv
+2026-05-07,23:25:07 | INFO |   val_frequency: 1
+2026-05-07,23:25:07 | INFO |   val_num_samples: None
+2026-05-07,23:25:07 | INFO |   vl_batch_size: 64
+2026-05-07,23:25:07 | INFO |   wandb: False
+2026-05-07,23:25:07 | INFO |   wandb_notes: 
+2026-05-07,23:25:07 | INFO |   warmup: 0
+2026-05-07,23:25:07 | INFO |   wd: 0.1
+2026-05-07,23:25:07 | INFO |   workers: 4
+2026-05-07,23:25:07 | INFO |   world_size: 1
+2026-05-07,23:25:07 | INFO |   zeroshot_frequency: 0
+2026-05-07,23:25:08 | INFO | Start epoch 0
