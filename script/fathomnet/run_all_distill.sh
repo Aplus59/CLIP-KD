@@ -35,7 +35,7 @@ for METHOD in "${METHODS[@]}"; do
     
     torchrun --nproc_per_node 1 -m \
         training.main_kd \
-        --save-frequency 1 \
+        --save-frequency 0 \
         --zeroshot-frequency 1 \
         --report-to tensorboard \
         --train-data="../newd/db/train_split.csv"  \
@@ -63,4 +63,8 @@ for METHOD in "${METHODS[@]}"; do
         --alpha_gd_loss ${GD} \
         --alpha_afd_loss ${AFD} \
         --tag ${TAG}
+
+    # Clean up checkpoints after each method to save disk space
+    echo "Cleaning up checkpoints for $METHOD..."
+    rm -f ../logs/*-tag_${TAG}/checkpoints/epoch_*.pt
 done
