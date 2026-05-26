@@ -1,4 +1,10 @@
 #!/bin/bash
+echo "--- Debug: listing workspace root ---"
+ls -la /workspace/CLIP-KD
+echo "--- Debug: listing checkpoints ---"
+ls -la /workspace/CLIP-KD/checkpoints || echo "checkpoints folder not found"
+echo "--- Debug: listing checkpoints/ViT-B-16_teacher ---"
+ls -la /workspace/CLIP-KD/checkpoints/ViT-B-16_teacher || echo "ViT-B-16_teacher folder not found"
 cd src
 torchrun --nproc_per_node 1 -m \
     training.main \
