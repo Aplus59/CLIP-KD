@@ -33,7 +33,7 @@ for METHOD in "${METHODS[@]}"; do
 
     TAG="fathomnet-distill-${METHOD}-student-vit-b"
     
-    torchrun --nproc_per_node 1 -m \
+    /workspace/CLIP-KD/venv/bin/torchrun --nproc_per_node 1 -m \
         training.main_kd \
         --save-frequency 0 \
         --zeroshot-frequency 1 \
