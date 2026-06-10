@@ -37,10 +37,15 @@ The Teacher model is initialized with CC3M+12M weights and fine-tuned on our mar
 
 The Student model is supervised by the ViT-B/16 Teacher (Epoch 23) and distilled on our marine dataset. 
 
-| Role | Network | Method | Text-to-Image R@1 | Mean R@1 | Mean R@10 |
-| :----: | :----: | :----: | :----: | :----: | :----: |
-| Student | ViT-T/16 | CKD | 28.89% | 24.44% | > 73.00% |
-| Student | ViT-T/16 | CLIP-KD (Combined) | - | 15.56% | - |
+| Method | Epoch | Val Loss | I2T R@1 | I2T R@5 | I2T R@10 | T2I R@1 | T2I R@5 | T2I R@10 | Avg R@1 |
+| :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| CKD | 14 | 3.5946 | 20.00% | 57.78% | 66.67% | 28.89% | 60.00% | 73.33% | 24.44% |
+| GD | 12 | 3.5024 | 20.00% | 55.56% | 68.89% | 26.67% | 55.56% | 75.56% | 23.33% |
+| FD | 12 | 3.5002 | 20.00% | 55.56% | 68.89% | 26.67% | 55.56% | 75.56% | 23.33% |
+| AFD | 11 | 3.4813 | 20.00% | 53.33% | 66.67% | 26.67% | 53.33% | 73.33% | 23.33% |
+| CrossKD | 12 | 3.5074 | 17.78% | 55.56% | 66.67% | 26.67% | 55.56% | 77.78% | 22.22% |
+| ICL | 12 | 3.5105 | 17.78% | 55.56% | 66.67% | 26.67% | 55.56% | 77.78% | 22.22% |
+| CLIP-KD | 9 | 3.5437 | 17.78% | 48.89% | 71.11% | 13.33% | 46.67% | 68.89% | 15.56% |
 
 * **Hyperparameters:** Batch Size 64, LR 1e-5, Weight Decay 0.2, 20 Epochs.
 
